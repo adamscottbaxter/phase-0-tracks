@@ -21,7 +21,7 @@ A commit is a recording of the snapshot of the file. It will act as a save point
 >
 > it could read:
 >
-> * *added **bold** text to <h2>*.
+> * *added unordered list to FAQ*
 
 * What is a merge conflict?
 
