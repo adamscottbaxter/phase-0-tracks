@@ -6,6 +6,17 @@
 
 Version control allows for a project to be worked on by one or multiple people in a way that can track changes as well as ensure that the group is all working with the same code. Version control also lets the project get broken up, allowing small features to be tracked and added as needed without effecting the functionality of the master file. Version control also verifies if code will be able to merge together successfully. Finally, it also works through the cloud, giving extra insurance to the project should something happen to the local files / computer(s).
 
+Git and Github are not the same thing.
+
+> **Git** is a standalone version control system. It is useful to take snapshots of your project to manage your code history.
+
+> **Github** is a place to host and share git repos. It is most useful as a collaboration or file backup tool.
+
+###The three states of a file in git are:
+* **Committed:** The data is safely stored in the local database
+* **Modified:** The file has changed but not yet committed to the database
+* **Staged:** The modified file has been marked to go into the next commit snapshot
+
 * What is a branch and why would you use one?
 
 A branch is an offshoot of the master (or another parent) file for the purpose of adding additional content to the project. It is a good idea to make branches when adding features instead of working off the master directly. A branch could be used, for example, when a website is being made and a new function, such as adding a log-in, is being added.
