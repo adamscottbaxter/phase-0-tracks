@@ -1,1 +1,27 @@
-* {background-color: cyan;}
+.column-1 {
+  display: inline-block;
+  vertical-align: top;
+  width: 45%;
+  padding: 20px;
+  background-color: green;
+  border-radius: 10px;
+}
+
+.column-2 {
+  display: inline-block;
+  vertical-align: top;
+  width: 45%;
+  padding: 10px;
+  padding-bottom: 68px;
+  background-color: cyan;
+  border-radius: 10px;
+}
+
+header {
+  background-color: orange;
+  font-family: Helvetica;
+}
+
+footer {
+  background-color: purple;
+}
