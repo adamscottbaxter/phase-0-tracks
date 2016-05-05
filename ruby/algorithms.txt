@@ -1,0 +1,64 @@
+set the value for the floor you are on (Floor A)
+
+determine what floor you would like to be on (Floor B)
+
+define elevator: a cube-shaped area through sliding doors with a button panel inside the area as well as one located outside. Near the top of the elevator is a display which depicts which floor the elevator is currently on.
+
+if Floor B > Floor A
+
+-locate the elevator
+
+-press 'up' call button next to the elevator
+
+-the sliding door will open. enter the elevator through the door and turn around
+
+-press the button on the panel in front of you which corresponds with Floor B
+
+-wait until the display shows Floor B is the current floor.
+
+-exit elevator by walking forward
+
+else if Floor B < Floor A
+
+-locate the elevator
+
+-press 'down' call button next to the elevator
+
+-the sliding door will open. enter the elevator through the door and turn around
+
+-press the button on the panel in front of you which corresponds with Floor B
+
+-wait until the display shows Floor B is the current floor.
+
+-exit elevator by walking forward
+
+else ignore the elevator
+
+
+Dog Walking
+
+determine length of walk in time or distance units (walk_length)
+assess temperature
+if temperature is less than 50 degrees
+-put on winter coat
+else if temperature is between 50 and 65
+-put on light jacket
+else
+-no coat or jacket needed
+
+put on shoes
+put a poop bag in pocket
+locate dog
+locate dog harness
+affix the harness to the dog
+
+if dog poops at any point
+then pick up poop with poop bag and put in a garbage can
+
+walk outside with dog
+continue walking until the current length of the walk is < walk_length
+then turn around and retrace steps back home
+
+take harness off dog
+if wearing a jacket, take it off
+take off shoes
