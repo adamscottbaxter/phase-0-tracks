@@ -19,12 +19,16 @@ else
   age_correct = false
 end
 
-if age_correct && bread == "yes"
+if name == "Drake Cula" || name == "Tu Fang"
+  result = "Definitely a vampire"
+elsif age_correct && bread == "yes"
   result = "Probably not a vampire"
 elsif age_correct == false && (bread == "no" || insurance == "no")
   result = "Probably not a vampire"
+elsif age_correct == false && bread == "no" && insurance == "no"
+  result = "Almost certainly a vampire"
 else
   result = "Results inconclusive"
 end
 
-print result
+puts result
