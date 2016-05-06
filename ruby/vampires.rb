@@ -26,7 +26,7 @@ while counter <= num_employees do
     allergy = gets.chomp
   end
   if allergy == "sunshine"
-    puts "Probably a vampire."
+    #puts "Probably a vampire."
     counter += 1
   else
     if age + year == 2016 || age + year == 2015
@@ -46,12 +46,12 @@ while counter <= num_employees do
     else
       result = "Results inconclusive"
     end
-    
-    puts result
-    
+
+    #puts result
     counter += 1
   end
 
 end
-
+puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
+    
 
