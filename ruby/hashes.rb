@@ -22,3 +22,27 @@ exit program
   
 =end
 
+puts "What is the client's name?"
+client_name = gets.chomp
+
+puts "Number of children living in the household?"
+client_children_number = gets.chomp.to_i
+
+puts "What is the client's decor theme?"
+client_decor_theme = gets.chomp
+
+puts "How many rooms to decorate?"
+client_rooms = gets.chomp.to_i
+
+puts "Does the client speak english? (yes/no)"
+client_english = gets.chomp
+
+if client_english == "yes"
+  client_english = true
+else
+  client_english = false
+end
+
+client_data = {name: client_name, chilren_number: client_children_number, theme: client_decor_theme, rooms: client_rooms, speaks_english: client_english}
+
+puts client_data
