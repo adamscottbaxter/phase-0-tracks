@@ -43,6 +43,51 @@ else
   client_english = false
 end
 
-client_data = {name: client_name, chilren_number: client_children_number, theme: client_decor_theme, rooms: client_rooms, speaks_english: client_english}
+client_data = {name: client_name, children_number: client_children_number, theme: client_decor_theme, rooms: client_rooms, speaks_english: client_english}
 
 puts client_data
+
+puts "Would you like to update any information? (yes / none)"
+update = gets.chomp
+
+if update == "yes"
+  puts "Which section would you like to update? (name, children, decor, rooms, english)"
+  section = gets.chomp
+  case section
+  when "name"
+    puts "Please enter updated name:"
+    new_name = gets.chomp
+    client_data[:name] = new_name
+  when "children"
+    puts "Please enter the correct number of children:"
+    new_children = gets.chomp.to_i
+    client_data[:children_number] = new_children
+  end
+
+# elsif update == "none"
+
+end
+
+puts client_data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
