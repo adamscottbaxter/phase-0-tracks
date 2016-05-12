@@ -34,38 +34,32 @@ client_decor_theme = gets.chomp
 puts "How many rooms to decorate?"
 client_rooms = gets.chomp.to_i
 
-puts "Does the client speak english? (yes/no)"
-client_english = gets.chomp
-
-if client_english == "yes"
-  client_english = true
-else
-  client_english = false
-end
+puts "Does the client speak English? (yes/no)"
+client_english = gets[0] == "y"
 
 client_data = {name: client_name, children_number: client_children_number, theme: client_decor_theme, rooms: client_rooms, speaks_english: client_english}
 
 puts client_data
 
-puts "Would you like to update any information? (yes / none)"
-update = gets.chomp
+puts "Any information you would like to update? (name / children_number / theme / rooms / speaks_english / none)"
+update = gets.chomp.to_sym
 
-if update == "yes"
-  puts "Which section would you like to update? (name, children, decor, rooms, english)"
-  section = gets.chomp
-  case section
-  when "name"
-    puts "Please enter updated name:"
-    new_name = gets.chomp
-    client_data[:name] = new_name
-  when "children"
-    puts "Please enter the correct number of children:"
-    new_children = gets.chomp.to_i
-    client_data[:children_number] = new_children
-  end
-
-# elsif update == "none"
-
+case update
+when :name
+  puts "Please enter updated name:"
+  client_data[:name] = gets.chomp
+when :children_number
+  puts "Please enter the correct number of children:"
+  client_data[:children_number] = gets.chomp.to_i
+when :theme
+  puts "Please enter updated theme:"
+  client_data[:theme] = gets.chomp
+when :rooms
+  puts "Please enter the correct number of rooms:"
+  client_data[:rooms] = gets.chomp.to_i
+when :speaks_english
+  puts "Please enter whether the client speaks English: (yes/no)"
+  client_data[:speaks_english] = gets[0] == "y"
 end
 
 puts client_data
