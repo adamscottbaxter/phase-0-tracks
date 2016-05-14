@@ -37,7 +37,11 @@ end
 def name_changer(agent_name)
   agent_name.downcase!
   swap_name = agent_name.split(' ')
-  swap_name[0], swap_name[1] = swap_name[1], swap_name[0]
+  temp = swap_name[0]
+  swap_name[0] = swap_name[1]
+  swap_name[1] = temp
+  puts swap_name
+  # swap_name[0], swap_name[1] = swap_name[1], swap_name[0]
   alpha_fragment = swap_name[0].split('')
   beta_fragment = swap_name[1].split('')
 
@@ -53,5 +57,17 @@ def name_changer(agent_name)
 
 end
 
-p name_changer("Felicia Torres")
-# name_changer("Felicia Torres")
+collection = {}
+spy_name = ""
+until spy_name == "quit"
+  puts "Hi spy, what's your real name(s) so we can make some edits? Type 'quit' when done."
+ 
+  spy_name = gets.chomp
+
+  transformed = name_changer(spy_name) unless spy_name == "quit"
+
+  collection[spy_name] = transformed
+end
+
+collection.each { |key, value| puts "#{key}: AKA #{value}"}
+
