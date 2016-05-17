@@ -122,3 +122,27 @@ end
 # p grocery_list
 
 # print_list(grocery_list)
+
+# What did you learn about pseudocode from working on this challenge?
+
+# I learned to put more specific thought into what should be the input and outputs of my methods and code blocks. Pseudocoding effectively, while seemingly slow initially, makes for an efficient process overall.
+
+# What are the tradeoffs of using arrays and hashes for this challenge?
+
+# Well, we only used hashes. I think using arrays, either an array for eacy item / quantity or for all items and all quantities, would be a little clunkier, especially when editing data.
+
+# What does a method return?
+
+# It will implicitly return the last line unless there is an explicit return of something else.
+
+# What kind of things can you pass into methods as arguments?
+
+# I think you can pass just about any object as an argument. So far we have passed integers, strings, hashes, arrays, and booleans.
+
+# How can you pass information between methods?
+
+# You can pass information between methods by passing in variables as arguments for the methods.
+
+# What concepts were solidified in this challenge, and what concepts are still confusing?
+
+# In this challenge I got tripped up when we encountered an error when we did not include the hash name as a parameter for our methods. I had to think about it for a minute but eventually figured it out. Getting stuck for a bit solidified that concept for me. The rest I'm pretty comfortable with.
