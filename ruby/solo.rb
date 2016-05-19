@@ -45,7 +45,20 @@ class Sports_team
       end
     end
   end
+
+  def set_record(w, l)
+    @wins = w
+    @losses = l
+  end
+
+  def playoff_bound
+    @wins > @losses ? (puts "The #{@team_name} are going to the playoffs!") : (puts "Better luck next year, #{team_name}...")
+  end
 end
 
 bears = Sports_team.new("Bears", 4, 3)
 bears.new_captain("Elaine")
+
+bears.playoff_bound
+bears.set_record(5,9)
+bears.playoff_bound
