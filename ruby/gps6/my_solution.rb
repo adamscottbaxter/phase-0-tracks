@@ -93,33 +93,33 @@ end
 #=======================================================================
 # Reflection Section
 
-What are the differences between the two different hash syntaxes shown in the state_data file?
+# What are the differences between the two different hash syntaxes shown in the state_data file?
 
-One hash is created using a 'hash rocket' => whereas the other is made using the symbol shortcut.
-In this case the method with the hash rocket allows the key to be a string instead of strictly a symbol.
+# One hash is created using a 'hash rocket' => whereas the other is made using the symbol shortcut.
+# In this case the method with the hash rocket allows the key to be a string instead of strictly a symbol.
 
-What does require_relative do? How is it different from require?
+# What does require_relative do? How is it different from require?
 
-  require_relative allows the file to add in content (methods, data) from another file in the directory's file structure.
-  this is different from require, which can load methods built into ruby itself, outside of the file structure of the project.
-What are some ways to iterate through a hash?
+#   require_relative allows the file to add in content (methods, data) from another file in the directory's file structure.
+#   this is different from require, which can load methods built into ruby itself, outside of the file structure of the project.
+# What are some ways to iterate through a hash?
 
-A hash may be iterated using:
-.each do |key, value|
-.each_pair do |key, value|
-.each_key do |key|
-.each_value do |value|
-.each_with_index do |(key,value),index|
-each of these will call a block for each key in the hash but use the specified parameters.
+# A hash may be iterated using:
+# .each do |key, value|
+# .each_pair do |key, value|
+# .each_key do |key|
+# .each_value do |value|
+# .each_with_index do |(key,value),index|
+# each of these will call a block for each key in the hash but use the specified parameters.
 
-When refactoring virus_effects, what stood out to you about the variables, if anything?
+# When refactoring virus_effects, what stood out to you about the variables, if anything?
 
-The instance variables are available to all the instance methods. They do not need to be passed in as arguments.
+# The instance variables are available to all the instance methods. They do not need to be passed in as arguments.
   
-What concept did you most solidify in this challenge?
+# What concept did you most solidify in this challenge?
 
-(I am not 100% on this...) It seems to me that a private method is one that is not intended to be run in an instance of a class by itself.
-In the example for this exercise speed_of_spread and predicted_deaths both returned half sentences and needed to be run together to make sense.
+# (I am not 100% on this...) It seems to me that a private method is one that is not intended to be run in an instance of a class by itself.
+# In the example for this exercise speed_of_spread and predicted_deaths both returned half sentences and needed to be run together to make sense.
 
 
 
