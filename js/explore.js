@@ -8,9 +8,13 @@ function reverseFunction(string) {
   for ( var i = string.length-1, new_string = ""; i >= 0; i--) {
     new_string = new_string + (string[i])
   }
-  console.log(new_string)
+  return new_string;
 }
 
-reverseFunction("Hello")
+console.log(reverseFunction("Hello"))
 
-reverseFunction("987654321")
+var myVar = reverseFunction("abcdefg")
+
+if ("bears"=="bears") {
+  console.log(myVar)
+}
