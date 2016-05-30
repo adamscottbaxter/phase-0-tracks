@@ -26,7 +26,18 @@
 //     else return false
 //   if not return false
 
-var test_array = ["cat", "c", "puppy", "dinosaur", "apple", "b", "s"];
+// PSEUDOCODE Release 2
+
+// within the function which selects how many words to use:
+// create preliminary list of 'random' words which are 10 letters long
+//   as many times as needed:
+//     select from preliminary word bank at random
+//     for each word:
+//       create a way to roll a random 1-10 and keep that many letters from the word, deleting the rest
+//       pass that word into an array to be used by greatestLength
+
+
+var test_array = ["cat", "c", "puppy", "dinosaur", "apple", "b", "z"];
 function greatestLength(array_of_strings) {
   var answer_array = [""];
   for (var i in array_of_strings) {
