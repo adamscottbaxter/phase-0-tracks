@@ -53,6 +53,7 @@ function matchFinder(obj1, obj2) {
   }
 }
 
+console.log(matchFinder({shape: "triangle", color: "green"}, {name: "adam", age:200}))
 console.log(matchFinder({name: "shirley", age: 100}, {name: "adam", age:200}))
 console.log(matchFinder({name: "adam", age: 100}, {name: "adam", age:200}))
 console.log(greatestLength(test_array));
