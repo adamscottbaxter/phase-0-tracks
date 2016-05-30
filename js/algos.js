@@ -20,16 +20,21 @@
 var test_array = ["cat", "c", "puppy", "dinosaur", "apple", "b", "s"];
 function greatestLength(array_of_strings) {
   var answer_array = [""];
-  for (var i in test_array) {
-    if (test_array[i].length > answer_array[0].length) {
-      answer_array.unshift(test_array[i]);
+  for (var i in array_of_strings) {
+    if (array_of_strings[i].length > answer_array[0].length) {
+      answer_array.unshift(array_of_strings[i]);
     } else {
-      answer_array.push(test_array[i]);
+      answer_array.push(array_of_strings[i]);
     }
   }
   return answer_array[0]
 }
 console.log(greatestLength(test_array));
+console.log(greatestLength(["a", "bb", "ccc", "yy"]));
+console.log(greatestLength(["long", "longer", "longest"]));
+
+// release 0: things that didn't work
+
 // for (var i in test_array, big = "wwwww") {
 //   // var big = i;
 //   // console.log(big.length)
