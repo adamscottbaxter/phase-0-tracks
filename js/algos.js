@@ -1,4 +1,4 @@
-// PSEUDOCODE
+// PSEUDOCODE RELEASE 0
 
 // create a test_array of strings to test with
 // create empty new_array
@@ -17,6 +17,15 @@
 //   iterate through parameters and compare to index[0]
 //   if length greater than index[0] put in front, else put behind
 
+// PSEUDOCODE Release 1
+
+// create function which accepts two arguments
+// iterate through first argument keys to check if argument two has a match, 
+//   if so then check to see if values are a match
+//     if yes return true
+//     else return false
+//   if not return false
+
 var test_array = ["cat", "c", "puppy", "dinosaur", "apple", "b", "s"];
 function greatestLength(array_of_strings) {
   var answer_array = [""];
@@ -29,9 +38,28 @@ function greatestLength(array_of_strings) {
   }
   return answer_array[0]
 }
+
+function matchFinder(obj1, obj2) {
+  for (var q in obj1) {
+    if (obj2.hasOwnProperty(q)) {
+      if (obj1[q] == obj2[q]) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+}
+
+console.log(matchFinder({name: "shirley", age: 100}, {name: "adam", age:200}))
+console.log(matchFinder({name: "adam", age: 100}, {name: "adam", age:200}))
 console.log(greatestLength(test_array));
 console.log(greatestLength(["a", "bb", "ccc", "yy"]));
-console.log(greatestLength(["long", "longer", "longest"]));
+console.log(greatestLength(["long phrase", "longer phrase", "longest phrase"]));
+
+
 
 // release 0: things that didn't work
 
