@@ -38,25 +38,9 @@
 //    store result in answer_array
 //       pass answer_array to greatestLength
 
-function getRandomIntInclusive(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function randomWord(int) {
- var wordBank = ["quizmaster", "intermezzo", "oxygenized", "equalizing", "zombifying", "mozzarella", "razzmatazz", "bumfuzzled"];
- var answer = [];
- for (var i = 0; i < int; i++) {
-  var temp = wordBank[getRandomIntInclusive(0, wordBank.length-1)];
-  var singles = temp.split("");
-  shortWord=  singles.splice(0, getRandomIntInclusive(1, 10)).join('');
-  answer.push(shortWord); 
- }
- return answer;
-}
-
-
-
+// Release 0:
 var test_array = ["cat", "c", "puppy", "dinosaur", "apple", "b", "z"];
+
 function greatestLength(array_of_strings) {
   var answer_array = [""];
   for (var i in array_of_strings) {
@@ -69,7 +53,7 @@ function greatestLength(array_of_strings) {
   return answer_array[0];
 }
 
-
+// Release 1:
 function matchFinder(obj1, obj2) {
   for (var q in obj1) {
     if (obj2.hasOwnProperty(q)) {
@@ -82,6 +66,23 @@ function matchFinder(obj1, obj2) {
       return false;
     }
   }
+}
+
+// Release 2:
+function getRandomIntInclusive(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomWord(int) {
+ var wordBank = ["quizmaster", "intermezzo", "oxygenized", "equalizing", "zombifying", "mozzarella", "razzmatazz", "bumfuzzled"];
+ var answer = [];
+ for (var i = 0; i < int; i++) {
+  var temp = wordBank[getRandomIntInclusive(0, wordBank.length-1)]; // selects randomly from the wordBank
+  var singles = temp.split("");
+  shortWord=  singles.splice(0, getRandomIntInclusive(1, 10)).join(''); // this line takes the randomly selected word, which has been split into letters, and randomly cuts off some of the ending, then joins the characters back into a word
+  answer.push(shortWord); // add the chopped word to the answer array
+ }
+ return answer;
 }
 
 console.log("----------Release 0--------");
