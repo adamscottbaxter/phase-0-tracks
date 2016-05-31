@@ -29,12 +29,31 @@
 // PSEUDOCODE Release 2
 
 // within the function which selects how many words to use:
+// create empty answer_array = []
 // create preliminary list of 'random' words which are 10 letters long
 //   as many times as needed:
 //     select from preliminary word bank at random
 //     for each word:
 //       create a way to roll a random 1-10 and keep that many letters from the word, deleting the rest
-//       pass that word into an array to be used by greatestLength
+//    store result in answer_array
+//       pass answer_array to greatestLength
+
+function getRandomIntInclusive(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomWord(int) {
+ var wordBank = ["quizmaster", "intermezzo", "oxygenized", "equalizing", "zombifying", "mozzarella", "razzmatazz", "bumfuzzled"];
+ var answer = [];
+ for (var i = 0; i < int; i++) {
+  var temp = wordBank[getRandomIntInclusive(0, wordBank.length-1)];
+  var singles = temp.split("");
+  shortWord=  singles.splice(0, getRandomIntInclusive(1, 10)).join('');
+  answer.push(shortWord); 
+ }
+ return answer;
+}
+
 
 
 var test_array = ["cat", "c", "puppy", "dinosaur", "apple", "b", "z"];
@@ -47,8 +66,9 @@ function greatestLength(array_of_strings) {
       answer_array.push(array_of_strings[i]);
     }
   }
-  return answer_array[0]
+  return answer_array[0];
 }
+
 
 function matchFinder(obj1, obj2) {
   for (var q in obj1) {
@@ -64,18 +84,55 @@ function matchFinder(obj1, obj2) {
   }
 }
 
-console.log(matchFinder({shape: "triangle", color: "green"}, {name: "adam", age:200}))
-console.log(matchFinder({name: "shirley", age: 100}, {name: "adam", age:200}))
-console.log(matchFinder({name: "adam", age: 100}, {name: "adam", age:200}))
+console.log("----------Release 0--------");
+
 console.log(greatestLength(test_array));
 console.log(greatestLength(["a", "bb", "ccc", "yy"]));
 console.log(greatestLength(["long phrase", "longer phrase", "longest phrase"]));
 
+console.log("----------Release 1--------");
+
+console.log(matchFinder({shape: "triangle", color: "green"}, {name: "adam", age:200}));
+console.log(matchFinder({name: "shirley", age: 100}, {name: "adam", age:200}));
+console.log(matchFinder({name: "adam", age: 100}, {name: "adam", age:200}));
+
+console.log("----------Release 2-alpha--");
+
+console.log(randomWord(3));
+
+console.log("---------------------------");
+
+console.log(randomWord(10));
+
+console.log("----------Release 2-beta---");
+
+console.log(greatestLength(randomWord(10)));
+
+console.log("---------------------------");
+
+console.log(greatestLength(randomWord(4)));
+
+console.log("---------------------------");
+
+console.log(greatestLength(randomWord(10)));
+
+console.log("----------Release 2--------");
+
+for ( var i = 0, roll = "", sampleArray = []; i < 10; i++) {
+ console.log("Generating random number 1-12...");
+ roll = getRandomIntInclusive(1, 12);
+ console.log("Number was " + roll + ". Creating array with length " + roll + ".");
+ sampleArray = randomWord(roll);
+ console.log(sampleArray);
+ console.log("");
+ console.log("The longest word in this array is: " + greatestLength(sampleArray));
+ console.log("---------------------------");
+}
 
 
 // release 0: things that didn't work
 
-// for (var i in test_array, big = "wwwww") {
+// for (var i in test_array, big = "") {
 //   // var big = i;
 //   // console.log(big.length)
 //     if (test_array[i].length < big.length) {
@@ -111,3 +168,4 @@ console.log(greatestLength(["long phrase", "longer phrase", "longest phrase"]));
 //   }
 //   return new_string;
 // }
+
