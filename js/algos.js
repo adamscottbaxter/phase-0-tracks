@@ -118,11 +118,15 @@ console.log(greatestLength(randomWord(10)));
 
 console.log("----------Release 2--------");
 
-for ( var i = 0, roll = ""; i < 10; i++) {
+for ( var i = 0, roll = "", sampleArray = []; i < 10; i++) {
  console.log("Generating random number 1-12...");
  roll = getRandomIntInclusive(1, 12);
  console.log("Number was " + roll + ". Creating array with length " + roll + ".");
- console.log(randomWord(roll));
+ sampleArray = randomWord(roll);
+ console.log(sampleArray);
+ console.log("");
+ console.log("The longest word in this array is: " + greatestLength(sampleArray));
+ console.log("---------------------------");
 }
 
 
