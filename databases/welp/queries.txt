@@ -1,0 +1,29 @@
+sqlite> select * from reviews, users where reviews.users_id = users.id;
+id          stars       comment        business_id  users_id    id          first_name  last_name 
+----------  ----------  -------------  -----------  ----------  ----------  ----------  ----------
+1           5           Amazing food!  1            1           1           Bradford    Pitt      
+2           2.5         The rolls mad  7            4           4           Steven      Wonder    
+3           4           Yoga was off   5            2           2           Mandy       Kaling    
+4           5           Thanks Janet   6            7           7           Denzel      George    
+
+sqlite> select * from reviews JOIN businesses ON businesses.id = reviews.business_id
+   ...> JOIN users ON users.id = reviews.users_id;
+id          stars       comment        business_id  users_id    id          name                          id          first_name  last_name 
+----------  ----------  -------------  -----------  ----------  ----------  ----------------------------  ----------  ----------  ----------
+1           5           Amazing food!  1            1           1           Grundy Hollow Wedding Chapel  1           Bradford    Pitt      
+2           2.5         The rolls mad  7            4           7           JoeBob's Sportz Bam           4           Steven      Wonder    
+3           4           Yoga was off   5            2           5           Plumbing by Janet             2           Mandy       Kaling    
+4           5           Thanks Janet   6            7           6           Sushi World                   7           Denzel      George    
+
+sqlite> select first_name, last_name, stars, comment, name from reviews JOIN businesses ON businesses.id = reviews.business_id
+   ...> JOIN users ON users.id = reviews.users_id;                                                              first_name  last_name   stars       comment        name                        
+----------  ----------  ----------  -------------  ----------------------------
+Bradford    Pitt        5           Amazing food!  Grundy Hollow Wedding Chapel
+Steven      Wonder      2.5         The rolls mad  JoeBob's Sportz Bam         
+Mandy       Kaling      4           Yoga was off   Plumbing by Janet           
+Denzel      George      5           Thanks Janet   Sushi World                 
+
+sqlite> select first_name, last_name, stars, comment, name from businesses JOIN reviews ON businesses.id = reviews.business_id
+   ...> JOIN users ON users.id = reviews.users_id where businesses.id = 1;                                      first_name  last_name   stars       comment        name                        
+----------  ----------  ----------  -------------  ----------------------------
+Bradford    Pitt        5           Amazing food!  Grundy Hollow Wedding Chapel
