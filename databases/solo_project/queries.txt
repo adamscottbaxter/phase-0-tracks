@@ -1,0 +1,62 @@
+sqlite> SELECT * FROM bank_customers;
+id          name             balance     has_mortgage  personal_banker_id
+----------  ---------------  ----------  ------------  ------------------
+1           Sarah Silverman  300500.0    false         3                 
+2           Eli Gold         120405.63   true          1                 
+3           David Copperfie  703.22      true          2                 
+
+sqlite> UPDATE bank_customers SET has_mortgage="false" WHERE id=3;
+sqlite> SELECT * FROM bank_customers;
+id          name             balance     has_mortgage  personal_banker_id
+----------  ---------------  ----------  ------------  ------------------
+1           Sarah Silverman  300500.0    false         3                 
+2           Eli Gold         120405.63   true          1                 
+3           David Copperfie  703.22      false         2                 
+
+sqlite> SELECT * FROM bank_customers, personal_bankers WHERE personal_banker_id = personal_bankers.id;                  id          name             balance     has_mortgage  personal_banker_id  id          name           years_experience
+----------  ---------------  ----------  ------------  ------------------  ----------  -------------  ----------------
+1           Sarah Silverman  300500.0    false         3                   3           Bradley Bucks  6               
+2           Eli Gold         120405.63   true          1                   1           Penny Wise     24              
+3           David Copperfie  703.22      false         2                   2           Richey Rich    3               
+
+sqlite> SELECT bank_customers.name, bank_customers.balance, personal_bankers.name, personal_bankers.years_experience FROM bank_customers JOIN personal_bankers ON bank_customers.personal_banker_id = personal_bankers.id;
+name             balance     name           years_experience
+---------------  ----------  -------------  ----------------
+Sarah Silverman  300500.0    Bradley Bucks  6               
+Eli Gold         120405.63   Penny Wise     24              
+David Copperfie  703.22      Richey Rich    3               
+
+sqlite> DELETE FROM bank_customers WHERE balance < 100000;
+sqlite> SELECT * FROM bank_customers, personal_bankers WHERE personal_banker_id = personal_bankers.id;
+id          name             balance     has_mortgage  personal_banker_id  id          name           years_experience
+----------  ---------------  ----------  ------------  ------------------  ----------  -------------  ----------------
+1           Sarah Silverman  300500.0    false         3                   3           Bradley Bucks  6               
+2           Eli Gold         120405.63   true          1                   1           Penny Wise     24              
+
+Cross Join Example: Matches every row from the first tale with one form the second.
+
+sqlite> SELECT * FROM bank_customers CORSS JOIN personal_bankers;
+id          name             balance     has_mortgage  personal_banker_id  id          name        years_experience
+----------  ---------------  ----------  ------------  ------------------  ----------  ----------  ----------------
+1           Sarah Silverman  300500.0    false         3                   1           Penny Wise  24              
+1           Sarah Silverman  300500.0    false         3                   2           Richey Ric  3               
+1           Sarah Silverman  300500.0    false         3                   3           Bradley Bu  6               
+2           Eli Gold         120405.63   true          1                   1           Penny Wise  24              
+2           Eli Gold         120405.63   true          1                   2           Richey Ric  3               
+2           Eli Gold         120405.63   true          1                   3           Bradley Bu  6               
+
+Inner Join Example: Creates a new table result which combines column values of those specified by the join-predicate (in this case bank_customers.personal_banker_id & personal_bankers.id)
+
+sqlite> SELECT BANK_CUSTOMERS.NAME, BALANCE, PERSONAL_BANKERS.NAME FROM BANK_CUSTOMERS INNER JOIN PERSONAL_BANKERS ON BANK_CUSTOMERS.PERSONAL_BANKER_ID = PERSONAL_BANKERS.ID;
+name             balance     name         
+---------------  ----------  -------------
+Sarah Silverman  300500.0    Bradley Bucks
+Eli Gold         120405.63   Penny Wise   
+sqlite> 
+LEFT OUTER JOIN: Fills out table where there are missing values, none in this case.
+
+sqlite> SELECT bank_customers.name, bank_customers.has_mortgage, personal_bankers.years_experience FROM bank_customers LEFT OUTER JOIN personal_bankers ON personal_bankers.id = bank_customers.personal_banker_id;
+name             has_mortgage  years_experience
+---------------  ------------  ----------------
+Sarah Silverman  false         6               
+Eli Gold         true          24              
