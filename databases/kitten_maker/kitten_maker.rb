@@ -28,7 +28,7 @@ def create_kitten(db, name, age)
   db.execute("INSERT INTO kittens (name, age) VALUES (?, ?)", [name, age])
 end
 
-100.times do
+10.times do
   create_kitten(db, Faker::Name.name, 0)
 end
 # so. many. kittens. 
