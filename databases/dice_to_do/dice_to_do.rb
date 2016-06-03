@@ -1,6 +1,6 @@
 # Dice_to_do
 # A to-do list app with a random twist
-
+# for each in list ask if they want to update that item
 # require gems
 require 'SQLite3'
 
@@ -27,21 +27,21 @@ rolls = SQLite3::Database.new("rolls.db")
 #   );
 # SQL
 
-# create_list_table_cmd = <<-SQL
-#   CREATE TABLE IF NOT EXISTS list (
-#     id INTEGER PRIMARY KEY,
-#     task1 VARCHAR(255),
-#     task2 VARCHAR(255),
-#     task3 VARCHAR(255)
-#   );
-# SQL
 create_list_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS list (
     id INTEGER PRIMARY KEY,
-    task_number INT,
-    task_name VARCHAR(255)
+    task1 VARCHAR(255),
+    task2 VARCHAR(255),
+    task3 VARCHAR(255)
   );
 SQL
+# create_list_table_cmd = <<-SQL
+#   CREATE TABLE IF NOT EXISTS list (
+#     id INTEGER PRIMARY KEY,
+#     task_number INT,
+#     task_name VARCHAR(255)
+#   );
+# SQL
 
 create_roll_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS rolls (
@@ -61,14 +61,14 @@ rolls.execute(create_roll_table_cmd)
 # end
 
 # create_list(list, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k")
-# def create_list(db, task1, task2, task3)
-#   db.execute("INSERT INTO list (task1, task2, task3) VALUES (?, ?, ?)", [task1, task2, task3])
-# end
-def create_list(db, task_number, task_name)
-  db.execute("INSERT INTO list (task_number, task_name) VALUES (?, ?)", [task_number, task_name])
+def create_list(db, task1, task2, task3)
+  db.execute("INSERT INTO list (task1, task2, task3) VALUES (?, ?, ?)", [task1, task2, task3])
 end
+# def create_list(db, task_number, task_name)
+#   db.execute("INSERT INTO list (task_number, task_name) VALUES (?, ?)", [task_number, task_name])
+# end
 
-if list.execute("SELECT * FROM list").length < 3
+if list.execute("SELECT * FROM list").length < 4
   puts "Would you like to (a) Use the default list or (b) create your own?"
   
   response = gets.chomp
