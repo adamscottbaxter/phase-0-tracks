@@ -64,6 +64,11 @@ rolls.execute(create_roll_table_cmd)
 def create_list(db, one, two, three)
   db.execute("INSERT INTO list (one, two, three) VALUES (?, ?, ?)", [one, two, three])
 end
+
+def update_list(db, key, value)
+  db.execute("UPDATE list SET #{key}=(?) WHERE id=1", [value])
+end
+# UPDATE rabbits SET age=4 WHERE name="Queen Bey";
 # def create_list(db, task_number, task_name)
 #   db.execute("INSERT INTO list (task_number, task_name) VALUES (?, ?)", [task_number, task_name])
 # end
@@ -92,7 +97,8 @@ else
     task_choice = gets.chomp
     puts "What would you like the task to be instead?"
     change = gets.chomp
-    list.execute("UPDATE list SET task_choice=change WHERE id=1")
+    update_list(list, task_choice, change)
+    # list.execute("UPDATE list SET #{task_choice}=#{change} WHERE id=1")
     # list.execute("UPDATE list SET task_choice=<<-SQL change SQL;")
                   # UPDATE list SET task_choice="false" WHERE id=3;
   else
