@@ -72,6 +72,7 @@ end
 # def create_list(db, task_number, task_name)
 #   db.execute("INSERT INTO list (task_number, task_name) VALUES (?, ?)", [task_number, task_name])
 # end
+print_list = list.execute("SELECT * FROM list")
 
 if list.execute("SELECT * FROM list WHERE id=1").length < 1
   puts "Would you like to (a) Use the default list or (b) create your own?"
@@ -92,7 +93,7 @@ else
   puts "It looks like a list already exists, would you like to (u)pdate the list or get (r)olling?"
   choice = gets.chomp
   if choice == "u"
-    p print list
+    p print_list
     puts "Which task would you like to update?"
     task_choice = gets.chomp
     puts "What would you like the task to be instead?"
@@ -101,18 +102,48 @@ else
     # list.execute("UPDATE list SET #{task_choice}=#{change} WHERE id=1")
     # list.execute("UPDATE list SET task_choice=<<-SQL change SQL;")
                   # UPDATE list SET task_choice="false" WHERE id=3;
+    print_list = list.execute("SELECT * FROM list")
+
   else
     puts "running program..."
   end
 
 end
 
-print_list = list.execute("SELECT * FROM list")
+# print_list = list.execute("SELECT * FROM list")
 
+p print_list[0]
 
-print_list[0].each do |key, value|
-  puts "If you roll a #{key} then the task is: #{value}"
+p print_list[0][1]
+p print_list[0][2]
+p print_list[0][3]
+print_list[0].each_pair do |key, value|
+  if key.is_a? Integer
+    puts "#{key} has the value #{value}"
+  else
+    puts "not"
+    # 
+  end
 end
+
+# print_list[0].keys.each do |key, value|
+#   if key.is_a? Integer
+#     puts "#{print_list[0]} has the value #{print_list[0][key]}"
+#   else
+#     puts "not"
+#     # 
+#   end
+# end
+# print_list[0].each { |k,v| puts "#{key} has the value #{value}"}
+# for i in [1..2] do
+#   puts "#{print_list[0][i]} is the value"
+# end
+# [1..3].any? do |key|
+#   print_list[0].key?(key)
+# end
+# print_list[0].each do |key, value|
+#   puts "If you roll a #{key} then the task is: #{value}"
+# end
 
 # results.each do |task|
 #  puts "#{task['task1']} is #{task['task2']}"
