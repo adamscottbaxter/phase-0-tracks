@@ -30,9 +30,7 @@ rolls = SQLite3::Database.new("rolls.db")
 create_list_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS list (
     id INTEGER PRIMARY KEY,
-    one VARCHAR(255),
-    two VARCHAR(255),
-    three VARCHAR(255)
+    task VARCHAR(255)
   );
 SQL
 # create_list_table_cmd = <<-SQL
@@ -49,7 +47,19 @@ create_roll_table_cmd = <<-SQL
     roll INT
   );
 SQL
+def dice_roll
+  die = [1,2,3,4,5,6] 
+  x = die.sample
+  y = die.sample
+  # rand(1..6)
+  return x + y
+end
 
+def practice_dice
+  prac_dice = [1,2,3]
+  x = prac_dice.sample
+  return x
+end
 # create a  table (if it's not there already)
 list.execute(create_list_table_cmd)
 rolls.execute(create_roll_table_cmd)
@@ -61,12 +71,12 @@ rolls.execute(create_roll_table_cmd)
 # end
 
 # create_list(list, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k")
-def create_list(db, one, two, three)
-  db.execute("INSERT INTO list (one, two, three) VALUES (?, ?, ?)", [one, two, three])
+def create_list(db, task)
+  db.execute("INSERT INTO list (task) VALUES (?)", [task])
 end
 
-def update_list(db, key, value)
-  db.execute("UPDATE list SET #{key}=(?) WHERE id=1", [value])
+def update_list(db, id, new_task)
+  db.execute("UPDATE list SET task=(?) WHERE id=#{id}", [new_task])
 end
 # UPDATE rabbits SET age=4 WHERE name="Queen Bey";
 # def create_list(db, task_number, task_name)
@@ -85,9 +95,13 @@ if list.execute("SELECT * FROM list WHERE id=1").length < 1
       t2 = gets.chomp
       puts "third task?"
       t3 = gets.chomp
-      create_list(list, t1, t2, t3)
+      create_list(list, t1)
+      create_list(list, t2)
+      create_list(list, t3)
   else
-    create_list(list, "vacuum", "dust", "mop")
+    create_list(list, "vacuum")
+    create_list(list, "dust")
+    create_list(list, "mop")
   end
 else
   puts "It looks like a list already exists, would you like to (u)pdate the list or get (r)olling?"
@@ -99,35 +113,33 @@ else
     puts "What would you like the task to be instead?"
     change = gets.chomp
     update_list(list, task_choice, change)
-    # list.execute("UPDATE list SET #{task_choice}=#{change} WHERE id=1")
-    # list.execute("UPDATE list SET task_choice=<<-SQL change SQL;")
-                  # UPDATE list SET task_choice="false" WHERE id=3;
     print_list = list.execute("SELECT * FROM list")
 
   else
-    puts "running program..."
+    n = practice_dice
+    puts "just rolled a #{n}..."
+    selection = list.execute("SELECT task FROM list WHERE id=#{n}")
+    to_do = selection[0]['task']
+    puts "Your task today is: #{to_do}."
+
   end
 
 end
 
 # print_list = list.execute("SELECT * FROM list")
 
-p print_list[0]
 
-p print_list[0][1]
-p print_list[0][2]
-p print_list[0][3]
-print_list[0].each_pair do |key, value|
-  if key.is_a? Integer
-    if key == 0
-      next
-    else
-      puts "#{key} has the value #{value}"
-    end
-  else
-    next
-  end
-end
+# print_list[0].each_pair do |key, value|
+#   if key.is_a? Integer
+#     if key == 0
+#       next
+#     else
+#       puts "#{key} has the value #{value}"
+#     end
+#   else
+#     next
+#   end
+# end
 
 # print_list[0].keys.each do |key, value|
 #   if key.is_a? Integer
