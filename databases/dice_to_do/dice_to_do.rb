@@ -51,37 +51,27 @@ def dice_roll
   die = [1,2,3,4,5,6] 
   x = die.sample
   y = die.sample
-  # rand(1..6)
   return x + y
 end
 
-def practice_dice
-  prac_dice = [1,2,3]
-  x = prac_dice.sample
-  return x
-end
-# create a  table (if it's not there already)
-list.execute(create_list_table_cmd)
-rolls.execute(create_roll_table_cmd)
-# add a test kitten
-# db.execute("INSERT INTO kittens (name, age) VALUES ('Bob', 10)")
 
-# def create_list(db, task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11)
-#   db.execute("INSERT INTO list (task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [task1, task2, task3, task4, task5, task6, task7, task8, task9, task10, task11])
+# def create_list(db, task)
+#   db.execute("INSERT INTO list (task) VALUES (?)", [task])
 # end
 
-# create_list(list, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k")
-def create_list(db, task)
-  db.execute("INSERT INTO list (task) VALUES (?)", [task])
+def create_whole_list(db, item)
+  item.each do |i|
+    db.execute("INSERT INTO list (task) VALUES (?)", [i])
+  end
 end
 
 def update_list(db, id, new_task)
   db.execute("UPDATE list SET task=(?) WHERE id=#{id}", [new_task])
 end
-# UPDATE rabbits SET age=4 WHERE name="Queen Bey";
-# def create_list(db, task_number, task_name)
-#   db.execute("INSERT INTO list (task_number, task_name) VALUES (?, ?)", [task_number, task_name])
-# end
+
+list.execute(create_list_table_cmd)
+rolls.execute(create_roll_table_cmd)
+
 print_list = list.execute("SELECT id, task FROM list")
 
 if list.execute("SELECT * FROM list WHERE id=1").length < 1
@@ -89,19 +79,35 @@ if list.execute("SELECT * FROM list WHERE id=1").length < 1
   
   response = gets.chomp
   if response == "b"
+      puts "The order in which you enter the tasks will influence how often they are rolled, the first items you enter will occur more frequently than items entered at the end of the list."
       puts "first task?"
-      t1 = gets.chomp
+      t7 = gets.chomp
       puts "second task?"
-      t2 = gets.chomp
+      t6 = gets.chomp
       puts "third task?"
+      t8 = gets.chomp
+      puts "forth task?"
+      t5 = gets.chomp
+      puts "fifth task?"
+      t9 = gets.chomp
+      puts "sixth task?"
+      t4 = gets.chomp
+      puts "seventh task?"
+      t10 = gets.chomp
+      puts "eighth task?"
       t3 = gets.chomp
-      create_list(list, t1)
-      create_list(list, t2)
-      create_list(list, t3)
+      puts "ninth task?"
+      t11 = gets.chomp
+      puts "tenth task?"
+      t2 = gets.chomp
+      puts "eleventh task?"
+      t12 = gets.chomp
+      task_array = [t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12]
+      create_whole_list(list, task_array)
   else
-    create_list(list, "vacuum")
-    create_list(list, "dust")
-    create_list(list, "mop")
+    create_whole_list(list, ["clean the gutters", "weed the garden", "wash the car", "mow the lawn", "clean the bathroom" , "clean the kitchen", "vacuum the carpet", "sweep the floors", "clean the refrigerator", "give the dog a bath", "wash the windows"])
+    # create_list(list, "dust")
+    # create_list(list, "mop")
   end
 else
   puts "It looks like a list already exists, would you like to (u)pdate the list or get (r)olling?"
@@ -120,16 +126,16 @@ else
       puts print_list
     end
     puts "Alright, time to roll"
-    n = practice_dice
+    n = dice_roll
     puts "just rolled a #{n}..."
-    selection = list.execute("SELECT task FROM list WHERE id=#{n}")
+    selection = list.execute("SELECT task FROM list WHERE id=#{n-1}")
     to_do = selection[0]['task']
     puts "Your task today is: #{to_do}."
 
   else
-    n = practice_dice
+    n = dice_roll
     puts "just rolled a #{n}..."
-    selection = list.execute("SELECT task FROM list WHERE id=#{n}")
+    selection = list.execute("SELECT task FROM list WHERE id=#{n-1}")
     to_do = selection[0]['task']
     puts "Your task today is: #{to_do}."
 
