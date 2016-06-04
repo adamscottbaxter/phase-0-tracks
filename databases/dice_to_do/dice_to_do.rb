@@ -6,7 +6,7 @@ require 'SQLite3'
 
 # create SQLite3 database
 list = SQLite3::Database.new("list.db")
-# list.results_as_hash = true
+list.results_as_hash = true
 rolls = SQLite3::Database.new("rolls.db")
 # rolls.results_as_hash = true
 # learn about fancy string delimiters
@@ -30,9 +30,9 @@ rolls = SQLite3::Database.new("rolls.db")
 create_list_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS list (
     id INTEGER PRIMARY KEY,
-    task1 VARCHAR(255),
-    task2 VARCHAR(255),
-    task3 VARCHAR(255)
+    one VARCHAR(255),
+    two VARCHAR(255),
+    three VARCHAR(255)
   );
 SQL
 # create_list_table_cmd = <<-SQL
@@ -61,14 +61,14 @@ rolls.execute(create_roll_table_cmd)
 # end
 
 # create_list(list, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k")
-def create_list(db, task1, task2, task3)
-  db.execute("INSERT INTO list (task1, task2, task3) VALUES (?, ?, ?)", [task1, task2, task3])
+def create_list(db, one, two, three)
+  db.execute("INSERT INTO list (one, two, three) VALUES (?, ?, ?)", [one, two, three])
 end
 # def create_list(db, task_number, task_name)
 #   db.execute("INSERT INTO list (task_number, task_name) VALUES (?, ?)", [task_number, task_name])
 # end
 
-if list.execute("SELECT * FROM list").length < 4
+if list.execute("SELECT * FROM list WHERE id=1").length < 1
   puts "Would you like to (a) Use the default list or (b) create your own?"
   
   response = gets.chomp
@@ -102,16 +102,12 @@ else
 end
 
 print_list = list.execute("SELECT * FROM list")
-print_list.each do |z|
-  puts z 
-end
-# list.each do |item|
-#  puts "#{item['task1']}"
-# end
 
-p print_list
-results = list.execute("SELECT * FROM list")
-p results
+
+print_list[0].each do |key, value|
+  puts "If you roll a #{key} then the task is: #{value}"
+end
+
 # results.each do |task|
 #  puts "#{task['task1']} is #{task['task2']}"
 # end
