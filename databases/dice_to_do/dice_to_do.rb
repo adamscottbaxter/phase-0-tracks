@@ -82,7 +82,7 @@ end
 # def create_list(db, task_number, task_name)
 #   db.execute("INSERT INTO list (task_number, task_name) VALUES (?, ?)", [task_number, task_name])
 # end
-print_list = list.execute("SELECT * FROM list")
+print_list = list.execute("SELECT id, task FROM list")
 
 if list.execute("SELECT * FROM list WHERE id=1").length < 1
   puts "Would you like to (a) Use the default list or (b) create your own?"
@@ -107,13 +107,24 @@ else
   puts "It looks like a list already exists, would you like to (u)pdate the list or get (r)olling?"
   choice = gets.chomp
   if choice == "u"
-    p print_list
-    puts "Which task would you like to update?"
-    task_choice = gets.chomp
-    puts "What would you like the task to be instead?"
-    change = gets.chomp
-    update_list(list, task_choice, change)
-    print_list = list.execute("SELECT * FROM list")
+    puts print_list
+    task_choice = ""
+    until task_choice == "q"
+      puts "Which task id would you like to update? press (q) to finish updating."
+      task_choice = gets.chomp
+      break if task_choice == "q"
+      puts "What would you like the task to be instead?"
+      change = gets.chomp
+      update_list(list, task_choice, change)
+      print_list = list.execute("SELECT id, task FROM list")
+      puts print_list
+    end
+    puts "Alright, time to roll"
+    n = practice_dice
+    puts "just rolled a #{n}..."
+    selection = list.execute("SELECT task FROM list WHERE id=#{n}")
+    to_do = selection[0]['task']
+    puts "Your task today is: #{to_do}."
 
   else
     n = practice_dice
