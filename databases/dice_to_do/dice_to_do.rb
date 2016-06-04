@@ -119,10 +119,13 @@ p print_list[0][2]
 p print_list[0][3]
 print_list[0].each_pair do |key, value|
   if key.is_a? Integer
-    puts "#{key} has the value #{value}"
+    if key == 0
+      next
+    else
+      puts "#{key} has the value #{value}"
+    end
   else
-    puts "not"
-    # 
+    next
   end
 end
 
