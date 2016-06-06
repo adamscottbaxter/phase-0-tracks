@@ -3,20 +3,11 @@ require 'SQLite3'
 
 list = SQLite3::Database.new("list.db")
 list.results_as_hash = true
-rolls = SQLite3::Database.new("rolls.db")
-
 
 create_list_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS list (
     id INTEGER PRIMARY KEY,
     task VARCHAR(255)
-  );
-SQL
-
-create_roll_table_cmd = <<-SQL
-  CREATE TABLE IF NOT EXISTS rolls (
-    id INTEGER PRIMARY KEY,
-    roll INT
   );
 SQL
 
@@ -28,9 +19,9 @@ def dice_roll
 end
 
 def roll(db)
-  puts "Alright, time to roll"
+  puts "Alright, time to roll\n\n"
   n = dice_roll
-  puts "just rolled a #{n}..."
+  puts "just rolled a #{n}...\n\n"
   selection = db.execute("SELECT task FROM list WHERE id=#{n-1}")
   to_do = selection[0]['task']
   puts "Your task today is: #{to_do}."
@@ -47,7 +38,6 @@ def update_list(db, id, new_task)
 end
 
 list.execute(create_list_table_cmd)
-rolls.execute(create_roll_table_cmd)
 
 print_list = list.execute("SELECT id, task FROM list")
 
@@ -56,35 +46,35 @@ if list.execute("SELECT * FROM list WHERE id=1").length < 1
   
   response = gets.chomp
   if response == "b"
-      puts "The order in which you enter the tasks will influence how often they are rolled, the first items you enter will occur more frequently than items entered at the end of the list."
-      puts "first task?"
+      puts "The order in which you enter the tasks will influence how often they are rolled, the first items you enter will occur more frequently than items entered at the end of the list. There will be 11 in total.\n\n"
+      puts "Task to do when a 7 is rolled?"
       t7 = gets.chomp
-      puts "second task?"
+      puts "Task to do when an 6 is rolled?"
       t6 = gets.chomp
-      puts "third task?"
+      puts "Task to do when a 8 is rolled?"
       t8 = gets.chomp
-      puts "forth task?"
+      puts "Task to do when a 5 is rolled?"
       t5 = gets.chomp
-      puts "fifth task?"
+      puts "Task to do when a 9 is rolled?"
       t9 = gets.chomp
-      puts "sixth task?"
+      puts "Task to do when a 4 is rolled?"
       t4 = gets.chomp
-      puts "seventh task?"
+      puts "Task to do when a 10 is rolled?"
       t10 = gets.chomp
-      puts "eighth task?"
+      puts "Task to do when a 3 is rolled?"
       t3 = gets.chomp
-      puts "ninth task?"
+      puts "Task to do when an 11 is rolled?"
       t11 = gets.chomp
-      puts "tenth task?"
+      puts "Task to do when a 2 is rolled?"
       t2 = gets.chomp
-      puts "eleventh task?"
+      puts "Finally, task to do when a 12 is rolled?"
       t12 = gets.chomp
       task_array = [t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12]
       create_whole_list(list, task_array)
   else
     create_whole_list(list, ["clean the gutters", "weed the garden", "wash the car", "mow the lawn", "clean the bathroom" , "clean the kitchen", "vacuum the carpet", "sweep the floors", "clean the refrigerator", "give the dog a bath", "wash the windows"])
   end
-  puts "List created, time to roll."
+  puts "List created.\n\n"
   roll(list)
 else
   puts "It looks like a list already exists, would you like to (u)pdate the list or get (r)olling?"
@@ -102,24 +92,10 @@ else
       print_list = list.execute("SELECT id, task FROM list")
       puts print_list
     end
-    # puts "Alright, time to roll"
-    # n = dice_roll
-    # puts "just rolled a #{n}..."
-    # selection = list.execute("SELECT task FROM list WHERE id=#{n-1}")
-    # to_do = selection[0]['task']
-    # puts "Your task today is: #{to_do}."
-
     roll(list)
-
   else
-    # n = dice_roll
-    # puts "just rolled a #{n}..."
-    # selection = list.execute("SELECT task FROM list WHERE id=#{n-1}")
-    # to_do = selection[0]['task']
-    # puts "Your task today is: #{to_do}."
     roll(list)
   end
-
 end
 
 
