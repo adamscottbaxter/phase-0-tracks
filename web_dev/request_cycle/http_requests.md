@@ -1,4 +1,4 @@
-# What are some common HTTP status codes?
+## What are some common HTTP status codes?
 
 ### For quick reference:
 
@@ -49,5 +49,15 @@
 * 550 Permission denied
   * The server is stating the account you have currently logged in as does not have permission to perform the action you are attempting. You may be trying to upload to the wrong directory or trying to delete a file.
 
-What is the difference between a GET request and a POST request? When might each be used?
-Optional bonus question: What is a cookie (the technical kind, not the delicious kind)? How does it relate to HTTP requests?
+## What is the difference between a GET request and a POST request? When might each be used?
+
+A **GET** request is used when asking the server for information, but without the intention of making any changes. A GET request also can only pass information to the server using the URL, which limits the amount and type of information passed to the server. GET is said to be *idempotent*, meaning that it will do the same thing each time it's called, since no changes are occurring.
+
+A **POST** request can do what a GET request can do, but also has the ability to send information to the server for the purpose of modifying information (example: updating a form).
+
+## Optional bonus question: What is a cookie (the technical kind, not the delicious kind)? How does it relate to HTTP requests?
+
+> A cookie is a small piece of data that is sent from a website and stored in the user's browser. The purpose of the cookie is to record and transmit the state of the user's experience of the website to the website's server. Doing so enables the server to understand for example: 
+    * whether the user is logged in
+    * has clicked on various links
+    * or added items to their shopping cart
