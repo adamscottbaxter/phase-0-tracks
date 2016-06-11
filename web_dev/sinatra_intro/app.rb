@@ -12,6 +12,19 @@ get '/' do
   "#{params[:name]} is #{params[:age]} years old."
 end
 
+get '/contact' do
+  "351 Hubbard St<br>
+  Suite 701 (7th floor)<br>
+  Chicago, IL"
+end
+
+get '/great_job' do
+  if params[:name]
+    "Good job, #{params[:name]}!"
+  else
+    "Good job!"
+  end
+end
 # write a GET route with
 # route parameters
 get '/about/:person' do
@@ -21,6 +34,13 @@ end
 
 get '/:person_1/loves/:person_2' do
   "#{params[:person_1]} loves #{params[:person_2]}"
+end
+
+get '/:first/:second' do
+  num1 = params[:first]
+  num2 = params[:second]
+  result = num1.to_i + num2.to_i
+  "<h2>The sum of your two numbers is:</h2><br><h2>#{result}</h2>"
 end
 
 # write a GET route that retrieves
@@ -36,7 +56,18 @@ get '/students' do
   end
   response
 end
-
+# Bonus: woot woot
+get '/students/filter/:campus' do 
+  location_students = db.execute("SELECT * FROM students WHERE campus='#{params[:campus]}'")
+  location_response = ""
+  location_students.each do |student|
+    location_response  << "ID: #{student['id']}<br>"
+    location_response << "Name: #{student['name']}<br>"
+    location_response << "Age: #{student['age']}<br>"
+    location_response << "Campus: #{student['campus']}<br><br>"
+  end
+  location_response
+end
 # write a GET route that retrieves
 # a particular student
 
