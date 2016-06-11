@@ -6,3 +6,4 @@
 
 * I like to learn by doing, but the releases seem to focus on mostly 'passive' research. I think I'm going to go ahead and use my research time to build something.
 
+Well, coming back to this, it took me  a lot longer to get the gist of jquery than I thought. I ended up reading for a while. I did devise my own plan and implement it as I had imagined, which was satisfying, but I definitely went over time. I'm ok with that since it worked out as I was hoping. Probably not perfect, could loop or refactor, but pretty good for a first go.
